@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 import argparse
+from urllib.request import urlopen
+
+from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -25,9 +28,10 @@ def main(args: argparse.Namespace):
     logo = Image.open(args.logo).resize(LOGO_SIZE)
     image.paste(logo, LOGO_POS)
     # Write text
+    soup = BeautifulSoup(urlopen(args.source), "html.parser")
     font = ImageFont.truetype("./mplus-1m-regular.ttf", size=64)
     text_draw = ImageDraw.Draw(image)
-    text_draw.text(TEXT_POS, "hello world", font=font, fill=TEXT_COLOR)
+    text_draw.text(TEXT_POS, soup.title.string, font=font, fill=TEXT_COLOR)
     # Saving image
     image.save(args.out)
 
