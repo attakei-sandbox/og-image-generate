@@ -17,5 +17,5 @@
 
 ```
 poetry install
-poetry run ./og-image.py -o ogimage.png https://attakei.net/blog/2019/read-ansible-copy-module/
+poetry run ./og-image.py -o ogimage.png logo.jpg https://attakei.net/blog/2019/read-ansible-copy-module/
 ```
